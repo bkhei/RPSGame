@@ -13,11 +13,6 @@
         - Opponent chooses rock, and player chooses paper.
         - Opponent chooses scissors, and player chooses paper.
         - Opponent chooses paper, and player chooses rock.
-4) Now we're gonna do the above again, but we need to play again in a Bo5.
-    When player wins, increment x by 1, and then run playRound again.
-    When computer wins, increment y by 1, and then run playRound again.
-    If x == 3, then player wins.
-    If y == 3, then computer wins.
 
 */
 
@@ -33,17 +28,19 @@ function getComputerChoice(){ // Step 2
     }
     return computerSelects;
 }
+
+
 function playRound(playerSelection, computerSelection){
     let playerChoice = playerSelection.toUpperCase();
 // Player Victory
     if(playerChoice == "ROCK" && computerSelection == "Scissors"){
-        x++;
+        console.log("You win! Rock beats paper.");
     }
     else if(playerChoice == "PAPER" && computerSelection == "Rock"){
-        x++;
+        console.log("You win! Paper beats rock.");
     }
     else if(playerChoice == "SCISSORS" && computerSelection == "Paper"){
-        x++;
+        console.log("You win! Scissors beats paper.");
     }
 // Draw
     else if(playerChoice == "ROCK" && computerSelection == "Rock"){
@@ -57,28 +54,19 @@ function playRound(playerSelection, computerSelection){
     }
 // Computer Victory
     else if(playerChoice == "ROCK" && computerSelection == "Paper"){
-        y++;
+        console.log("Computer wins! Rock loses to paper.");
     }
     else if(playerChoice == "PAPER"  && computerSelection == "Scissors"){
-        y++;
+        console.log("Computer wins! Paper loses to scissors.");
     }
     else if(playerChoice == "SCISSORS" && computerSelection == "Rock"){
-        y++;
+        console.log("Computer wins! Scissors loses to rock.");
     }
     return 
 }
 const playerSelection = "rock"
 const computerSelection = getComputerChoice();
 
-let x, y = 0;
-
-
-function game(playRound, play){
-    while(x < 3 && y < 3){
-        const result = playRound(playerSelection, get)
-    }
-}
-
-game(playRound(playerSelection, computerSelection));
+playRound(playerSelection, computerSelection);
 // console.log(playRound(playerSelection, computerSelection));
 
