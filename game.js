@@ -18,6 +18,8 @@
 
 
 */
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){ // Step 2
     let select = Math.floor(Math.random() * 3) + 1;
@@ -35,37 +37,62 @@ function getComputerChoice(){ // Step 2
 
 function playRound(playerSelection, computerSelection){
     let playerChoice = playerSelection.toUpperCase();
-// Player Victory
+
+    // Player Victory
     if(playerChoice == "ROCK" && computerSelection == "Scissors"){
-        console.log("You win! Rock beats paper.");
+        playerScore++;
+        if(playerScore == 5){
+            return "Player wins!"
+        }
+        return "Rock beats paper."
     }
     else if(playerChoice == "PAPER" && computerSelection == "Rock"){
-        console.log("You win! Paper beats rock.");
+        playerScore++;
+        if(playerScore == 5){
+            return "Player wins!"
+        }
+        return "Paper beats rock."
     }
     else if(playerChoice == "SCISSORS" && computerSelection == "Paper"){
-        console.log("You win! Scissors beats paper.");
+        playerScore++;
+        if(playerScore == 5){
+            return "Player wins!"
+        }
+        return "Scissors beats paper."
     }
 // Draw
     else if(playerChoice == "ROCK" && computerSelection == "Rock"){
-        console.log("Draw!");
+        return "Draw!"
     }
     else if(playerChoice == "PAPER" && computerSelection == "Paper"){
-        console.log("Draw!");
+        return "Draw!"
     }
     else if(playerChoice == "SCISSORS" && computerSelection == "Scissors"){
-        console.log("Draw!");
+        return "Draw!"
     }
 // Computer Victory
     else if(playerChoice == "ROCK" && computerSelection == "Paper"){
-        console.log("Computer wins! Rock loses to paper.");
+        computerScore++;
+        if(computerScore == 5){
+            return "Computer wins!"
+        }
+        return "Rock loses to paper."
     }
     else if(playerChoice == "PAPER"  && computerSelection == "Scissors"){
-        console.log("Computer wins! Paper loses to scissors.");
+        computerScore++;
+        if(computerScore == 5){
+            return "Computer wins!"
+        }
+        return "Paper loses to scissors."
     }
     else if(playerChoice == "SCISSORS" && computerSelection == "Rock"){
-        console.log("Computer wins! Scissors loses to rock.");
+        computerScore++;
+        if(computerScore == 5){
+            return "Computer wins!"
+        }
+        return "Scissors loses to rock."
     }
-    return 
+
 }
 
 /* const playerSelection = "rock" */
@@ -75,15 +102,33 @@ function playRound(playerSelection, computerSelection){
 const rockButton = document.getElementById('rock');
 const paperButton = document.getElementById('paper');
 const scissorsButton = document.getElementById('scissors');
+const playerScoreID = document.getElementById('playerScoreDiv');
+const computerScoreID = document.getElementById('computerScoreDiv')
 
 // Functionality for each button selected
-rockButton.addEventListener('click', () => playRound('ROCK', getComputerChoice()));
-paperButton.addEventListener('click', () => playRound('PAPER', getComputerChoice()));
-scissorsButton.addEventListener('click', () => playRound('SCISSORS', getComputerChoice()));
+rockButton.addEventListener('click', () => {
+    const result = playRound('ROCK', getComputerChoice()); // Define result seperately 
+    resultDiv.textContent = result;
+    playerScoreID.textContent = `Player Score: ${playerScore}`;
+    computerScoreID.textContent = `Computer Score: ${computerScore}`;
+});
+
+paperButton.addEventListener('click', () =>{
+    const result = playRound('PAPER', getComputerChoice());
+    resultDiv.textContent = result;
+    playerScoreID.textContent = `Player Score: ${playerScore}`;
+    computerScoreID.textContent = `Computer Score: ${computerScore}`;
+});
+scissorsButton.addEventListener('click', () =>{
+    const result = playRound('SCISSORS', getComputerChoice());
+    resultDiv.textContent = result;
+    playerScoreID.textContent = `Player Score: ${playerScore}`;
+    computerScoreID.textContent = `Computer Score: ${computerScore}`;
+});
+
+
 
 
 const computerSelection = getComputerChoice();
-
-playRound(playerSelection, computerSelection);
 // console.log(playRound(playerSelection, computerSelection));
 
